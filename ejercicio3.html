@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h2>
+                Resultado: <span class="resultado"></span>
+            </h2>
+            <div>
+                <div>
+                    <div>
+                        <label for="">Valor 1</label>
+                        <input id="valor1" type="text">
+                    </div>
+                    <div>
+                        <label for="">Valor 2</label>
+                        <input id="valor2" type="text">
+                    </div>
+                    <div style="display: flex">
+                        <button id="btn-sumar" type="button">
+                            Sumar
+                        </button>
+                        <button id="btn-restar" type="button">
+                            Restar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="./index.html">Volver 👈</a>
+    </div>
+
+    <script>
+        
+        function ValidarDatos ( numero ){
+
+                if (!/^\d+$/.test(numero)) {                
+                        return false;
+                }else{
+                        return true;
+                }
+        }        
+
+        //Suma
+        const botonSumar =  document.getElementById('btn-sumar').addEventListener('click',()=>{
+            
+            const Numero1 =  Number (document.getElementById('valor1').value);
+            const Numero2 =  Number (document.getElementById('valor2').value);
+            const Resultado = document.querySelector('.resultado')
+
+            if (ValidarDatos(Numero1) && ValidarDatos(Numero2)){
+                Resultado.innerHTML = Numero1 + Numero2;
+            }else{
+                alert("Ingrese solo valores numericos")
+            }
+
+        })
+
+        //Resta        
+        const botonRestar =  document.getElementById('btn-restar').addEventListener('click',()=>{
+
+            const Numero1 =  Number (document.getElementById('valor1').value);
+            const Numero2 =  Number (document.getElementById('valor2').value);
+            const Resultado = document.querySelector('.resultado')
+
+            if (ValidarDatos(Numero1) && ValidarDatos(Numero2)){
+                const result = Numero1 - Numero2;
+                if (result < 0){
+                    Resultado.innerHTML = 0
+                }else{
+                    Resultado.innerHTML = Numero1 - Numero2;
+                }
+            }else{
+                alert("Ingrese solo valores numericos")
+            }
+
+        })
+
+        
+
+    </script>
+
+</body>
+
+</html>

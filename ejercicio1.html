@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+            <a href="./index.html">Volver 👈</a>
+        </div>
+       
+    </div>
+    
+    <script>
+        function ValidarDatos ( datos ){
+
+            if (!/^[a-zA-Z\s]+$/.test(datos)) {                
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        document.getElementById('botton').addEventListener('click',(e)=>{
+
+            e.preventDefault();
+            
+            //Recuperar los datos ingresados
+            const nombre = document.getElementById('nombre').value           
+            const asunto = document.getElementById('asunto').value           
+            const mensaje = document.getElementById('mensaje').value
+            //Inggreso exitodo
+            const resultado = document.querySelector('.resultado')
+            //recuperar los campos de error
+            const ErrorNombre = document.querySelector('.errorNombre');
+            const errorAsunto = document.querySelector('.errorAsunto');
+            const errorMensaje = document.querySelector('.errorMensaje');
+            //limpiar los mensaje de Error
+            ErrorNombre.innerHTML = "";
+            errorAsunto.innerHTML = "";
+            errorMensaje.innerHTML = "";
+            resultado.innerHTML = "";
+
+
+            if (!ValidarDatos( nombre )){
+                ErrorNombre.innerHTML = "El nombre es requerido.";
+             }
+
+             if (!ValidarDatos( asunto )){
+                errorAsunto.innerHTML = "El asunto es requerido.";
+            }
+
+             if (!ValidarDatos( mensaje )){
+                errorMensaje.innerHTML = "El mensaje es requerido.";
+            }
+
+            if( ValidarDatos(nombre) && ValidarDatos(asunto) && ValidarDatos (mensaje) ){
+                resultado.innerHTML = "Mensaje anviado con exíto !!!"
+               //limpiar datos ingresados
+               document.getElementById('nombre').value = "" 
+               document.getElementById('asunto').value = "" 
+               document.getElementById('mensaje').value = ""
+            }
+
+
+
+
+
+
+
+
+
+
+            
+            // if (!/^[a-zA-Z\s]+$/.test(nombre)) {                
+            //      ErrorNombre.innerHTML = "El nombre es requerido.";
+            // }else{
+            //     ErrorNombre.innerHTML = "";
+            // }
+
+        })//fin addEventListener
+
+    </script>
+
+</body>
+
+</html>
